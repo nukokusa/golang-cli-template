@@ -1,10 +1,7 @@
 .PHONY: init
 init:
-ifeq ($(shell uname -s),Darwin)
-	@grep -r -l golang-cli-template * | xargs sed -i "" "s/golang-cli-template/$$(basename `git rev-parse --show-toplevel`)/"
-else
-	@grep -r -l golang-cli-template * | xargs sed -i "s/golang-cli-template/$$(basename `git rev-parse --show-toplevel`)/"
-endif
+	@mv cmd/golang-cli-template cmd/$$(basename `git rev-parse --show-toplevel`)
+	@grep -r -l golang-cli-template * | xargs gsed -i "s/golang-cli-template/$$(basename `git rev-parse --show-toplevel`)/g"
 
 # GOBIN ?= $(shell go env GOPATH)/bin
 
@@ -17,7 +14,7 @@ endif
 # 	go test ./...
 
 # install:
-# 	go install github.com/nukokusa/golang-cli-template/cmd/app
+# 	go install github.com/nukokusa/golang-cli-template/cmd/golang-cli-template
 
 # $(GOBIN)/staticcheck:
 # 	@go install honnef.co/go/tools/cmd/staticcheck@latest
