@@ -1,7 +1,7 @@
 .PHONY: init
 init:
 	@mv cmd/golang-cli-template cmd/$$(basename `git rev-parse --show-toplevel`)
-	@grep -r -l golang-cli-template * | xargs gsed -i "s/golang-cli-template/$$(basename `git rev-parse --show-toplevel`)/g"
+	@grep -r -l golang-cli-template * .goreleaser.yml | xargs gsed -i "s/golang-cli-template/$$(basename `git rev-parse --show-toplevel`)/g"
 
 # GOBIN ?= $(shell go env GOPATH)/bin
 
