@@ -14,12 +14,12 @@ import (
 type CLIOptions struct {
 	Hello    *HelloOption     `cmd:"" help:"say hello"`
 	LogLevel string           `help:"logging level: DEBUG, INFO, WARN, ERROR" enum:"DEBUG,INFO,WARN,ERROR" name:"loglevel" default:"INFO"`
-	Version  kong.VersionFlag `help:"show Version" name:"version" short:"v"`
+	Version  kong.VersionFlag `help:"show Version" short:"v"`
 }
 
 func Run(ctx context.Context, args []string) error {
 	var opts CLIOptions
-	parser, err := kong.New(&opts, kong.Vars{"version": "app " + Version})
+	parser, err := kong.New(&opts, kong.Vars{"version": "golang-cli-template " + Version})
 	if err != nil {
 		return err
 	}
